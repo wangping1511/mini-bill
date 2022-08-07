@@ -36,6 +36,10 @@ function openPopup() {
 function onClickOverlay() {
   visible.value = false
 }
+
+function goDetail() {
+  Taro.navigateTo({ url: '/pages/detail/index' })
+}
 </script>
 
 <template>
@@ -45,7 +49,7 @@ function onClickOverlay() {
       <div class="bg-blue-500 w-100px font-600 text-center rounded-3px py-5px text-14px" @click="openPopup">
         全部类型
       </div>
-      <div class="mt-10px ml-10px text-13px flex">
+      <div class="mt-10px ml-10px text-14px flex">
         <p>2022年8月</p>
         <p class="ml-10px text-white_80">
           总支出￥999.00
@@ -57,6 +61,17 @@ function onClickOverlay() {
     </div>
     <div class="bg-gray-200_80 pt-10px">
       <div v-for="item in list" :key="item" class="mx-10px rounded-md mb-10px overflow-hidden">
+        <div v-if="item % 5 === 0" class="mb-10px ml-10px text-14px flex">
+          <p class="text-gray-500">
+            2022年8月
+          </p>
+          <p class="ml-10px text-gray-400_80">
+            总支出￥999.00
+          </p>
+          <p class="ml-10px text-gray-400_80">
+            总入账￥0.00
+          </p>
+        </div>
         <div class="bg-light-100 px-15px py-20px flex items-center justify-between">
           <div class="text-15px font-600">
             <text>8月5日</text>
@@ -79,7 +94,7 @@ function onClickOverlay() {
             </div>
           </div>
         </div>
-        <div v-for="item2 in 2" :key="item2" class="h-65px bg-white px-15px flex items-center justify-between">
+        <div v-for="item2 in 2" :key="item2" class="h-65px bg-white px-15px flex items-center justify-between" @click="goDetail">
           <div class="bg-blue-600 rounded-full p-5px">
             <div class="i-fluent-bowl-chopsticks-16-filled text-20px text-white" />
           </div>
@@ -168,7 +183,7 @@ function onClickOverlay() {
             </p>
           </div>
         </div>
-        <div class="mt-15px">
+        <div class="mt-15px" style="padding-bottom: env(safe-area-inset-bottom);">
           <text class="text-15px text-gray-500">
             支出
           </text>
