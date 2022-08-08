@@ -3,14 +3,27 @@ import Taro from '@tarojs/taro'
 import { ref } from 'vue'
 
 definePageConfig({
-  navigationBarTitleText: '记账本',
-  navigationBarTextStyle: 'white',
+  navigationStyle: 'custom',
   navigationBarBackgroundColor: '#2563eb',
   enablePullDownRefresh: true,
   backgroundColor: '#2563eb',
   backgroundColorBottom: '#eaecef',
 })
 const list = ref(5)
+
+/**
+ * 自定义顶部导航栏
+ */
+const navbarHeight = ref(0)
+const menuButtonHeight = ref(0)
+const titlePaddingTop = ref(0)
+Taro.getSystemInfo().then((res) => {
+  const statusBarHeight = res.statusBarHeight || 0
+  const { height, top } = Taro.getMenuButtonBoundingClientRect()
+  navbarHeight.value = statusBarHeight + height + (top - statusBarHeight) * 2
+  titlePaddingTop.value = top
+  menuButtonHeight.value = height
+})
 
 Taro.usePullDownRefresh(() => {
   Taro.showLoading({
@@ -44,8 +57,17 @@ function goDetail() {
 
 <template>
   <div>
-    <div class="h-80px bg-gray-200_80" />
-    <div class="bg-blue-600 pl-10px text-white fixed top-0 z-99 w-full h-80px pt-10px box-border">
+    <div>
+      <div class="w-full bg-blue-600 fixed top-0 z-100" :style="`height:${navbarHeight}px`">
+        <div class="flex items-center justify-center" :style="`height:${menuButtonHeight}px; padding-top: ${titlePaddingTop}px`">
+          <p class="text-center text-15px text-white font-500">
+            记账本
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-200_80" :style="`height: ${navbarHeight + 80}px`" />
+    <div class="bg-blue-600 pl-15px text-white fixed z-99 w-full h-80px pt-10px box-border" :style="`top: ${navbarHeight}px`">
       <div class="bg-blue-500 w-100px font-600 text-center rounded-3px py-5px text-14px" @click="openPopup">
         全部类型
       </div>
@@ -98,7 +120,7 @@ function goDetail() {
           <div class="bg-blue-600 rounded-full p-5px">
             <div class="i-fluent-bowl-chopsticks-16-filled text-20px text-white" />
           </div>
-          <div class="flex items-center h-full w-full ml-15px border-b-1 border-gray-50">
+          <div class="flex items-center h-full w-full ml-15px border-b-1 border-gray-100">
             <div class="flex-1">
               <p class="text-14px">
                 购物
