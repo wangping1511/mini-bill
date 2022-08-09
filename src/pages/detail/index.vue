@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import Taro from '@tarojs/taro'
+
 definePageConfig({
   navigationBarTitleText: '',
   navigationBarBackgroundColor: '#eaecef',
   backgroundColor: '#eaecef',
   backgroundColorBottom: '#eaecef',
 })
+
+function delConfirmVisible() {
+  Taro.showModal({ content: '删除后无法恢复，是否删除？', confirmColor: '#ef4444' }).then((res) => {
+    if (res.confirm)
+      Taro.navigateBack()
+  })
+}
 </script>
 
 <template>
@@ -16,7 +25,7 @@ definePageConfig({
         </div>
         <p>购物</p>
       </div>
-      <p class="text-30px mt-20px">
+      <p class="text-30px mt-20px font-500">
         -99.00
       </p>
       <div class="mt-20px flex text-left pb-40px border-b-1 border-gray-200">
@@ -36,12 +45,12 @@ definePageConfig({
         </div>
       </div>
       <div class="py-20px flex justify-evenly">
-        <div class="flex items-center text-red-500">
+        <div class="flex-1 flex items-center justify-center text-red-500" @click="delConfirmVisible">
           <div class="i-mdi-delete-outline text-16px mr-5px" />
           <p>删除</p>
         </div>
         <div class="border-l-1 border-gray-200" />
-        <div class="flex items-center text-gray-500">
+        <div class="flex-1 flex items-center justify-center text-gray-500">
           <div class="i-mdi-square-edit-outline text-16px mr-5px" />
           编辑
         </div>

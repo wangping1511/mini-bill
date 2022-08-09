@@ -68,7 +68,7 @@ function goDetail() {
     </div>
     <div class="bg-gray-200_80" :style="`height: ${navbarHeight + 80}px`" />
     <div class="bg-blue-600 pl-15px text-white fixed z-99 w-full h-80px pt-10px box-border" :style="`top: ${navbarHeight}px`">
-      <div class="bg-blue-500 w-100px font-600 text-center rounded-3px py-5px text-14px" @click="openPopup">
+      <div class="bg-blue-500 w-100px font-600 text-center rounded-3px py-5px text-14px" hover-class="bg-blue-700" @click="openPopup">
         全部类型
       </div>
       <div class="mt-10px ml-10px text-14px flex">
