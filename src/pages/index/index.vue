@@ -68,8 +68,12 @@ function goDetail() {
     </div>
     <div class="bg-gray-200_80" :style="`height: ${navbarHeight + 80}px`" />
     <div class="bg-blue-600 pl-15px text-white fixed z-99 w-full h-80px pt-10px box-border" :style="`top: ${navbarHeight}px`">
-      <div class="bg-blue-500 w-100px font-600 text-center rounded-3px py-5px text-14px" hover-class="bg-blue-700" @click="openPopup">
-        全部类型
+      <div class="flex justify-center items-center bg-blue-500 w-110px font-600 text-center rounded-3px p-5px text-14px" hover-class="bg-blue-700" @click="openPopup">
+        <p>
+          全部类型
+        </p>
+        <div class="border-l-2 border-blue-300 h-13px mx-10px" />
+        <div class="i-material-symbols-widgets-outline-rounded" />
       </div>
       <div class="mt-10px ml-10px text-14px flex">
         <p>2022年8月</p>
@@ -116,22 +120,24 @@ function goDetail() {
             </div>
           </div>
         </div>
-        <div v-for="item2 in 2" :key="item2" class="h-65px bg-white px-15px flex items-center justify-between" @click="goDetail">
-          <div class="bg-blue-600 rounded-full p-5px">
-            <div class="i-fluent-bowl-chopsticks-16-filled text-20px text-white" />
-          </div>
-          <div class="flex items-center h-full w-full ml-15px border-b-1 border-gray-100">
-            <div class="flex-1">
-              <p class="text-14px">
-                购物
-              </p>
-              <p class="mt-5px text-12px text-gray-400_80">
-                15:00 | 扫码付款xxx商户
+        <div class="bg-white">
+          <div v-for="item2 in 2" :key="item2" class="h-65px px-15px flex items-center justify-between" hover-class="bg-gray-200" @click="goDetail">
+            <div class="bg-blue-600 rounded-full p-5px">
+              <div class="i-fluent-bowl-chopsticks-16-filled text-20px text-white" />
+            </div>
+            <div class="flex items-center h-full w-full ml-15px border-b-1 border-gray-100">
+              <div class="flex-1">
+                <p class="text-14px">
+                  购物
+                </p>
+                <p class="mt-5px text-12px text-gray-400_80">
+                  15:00 | 扫码付款xxx商户
+                </p>
+              </div>
+              <p class="text-15px font-600">
+                -2.5
               </p>
             </div>
-            <p class="text-15px font-600">
-              -2.5
-            </p>
           </div>
         </div>
       </div>
